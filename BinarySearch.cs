@@ -8,16 +8,22 @@ namespace DoubleSearch
     class Program
     {
         static Int64[] mass = new Int64[100000000];
-        static Int64 search(Int64 val, Int64 l, Int64 r)
+        static long search(long[] arr, long val)
         {
-            Int64 m = l + (r - l) / 2;
-            if (val > mass[m])
+            long m = 0;
+            long l = -1;
+            long r = arr.Length;
+            while (l < r - 1)
             {
-                return search(val, m, r);
-            }
-            if (val < mass[m])
-            {
-                return search(val, l, m);
+                m = l + (r - l) / 2;
+                if (val > mass[m])
+                {
+                    l = m;
+                }
+                else
+                {
+                    r = m;
+                }
             }
             return m;
         }
@@ -29,7 +35,7 @@ namespace DoubleSearch
             }
             System.Diagnostics.Stopwatch s = new System.Diagnostics.Stopwatch();
             s.Start();
-            Int64 adr = search(1, 0, mass.LongLength);
+            Int64 adr = search(mass, 100000000 - 2);
             s.Stop();
             Console.WriteLine(adr);
             Console.WriteLine(s.ElapsedTicks);
