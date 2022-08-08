@@ -4,10 +4,9 @@
 :white_check_mark: Фиббоначи    
 :white_check_mark: Факториал    
 :white_check_mark: Сортировка пузырьком    
-
+:white_check_mark: Сортировка расческой  
 
 В планах:    
-⬜ Сортировка расческой  
 ⬜ Quick Sort  
 ⬜ Merge Sort  
 ⬜ Пирамидальная сортировка  
