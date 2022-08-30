@@ -18,33 +18,17 @@ namespace MergeSort
 
             while (leftInd < maxLeftInd && rightInd < maxRightInd)
             {
-                if (left[leftInd].CompareTo(right[rightInd]) < 0) // left[i] < right[j] - условно говоря
-                {
-                    result[resultInd] = left[leftInd];
-                    resultInd++;
-                    leftInd++;
-                }
+                if (left[leftInd].CompareTo(right[rightInd]) < 0)
+                    result[resultInd++] = left[leftInd++];
                 else
-                {
-                    result[resultInd] = right[rightInd];
-                    resultInd++;
-                    rightInd++;
-                }
+                    result[resultInd++] = right[rightInd++];
             }
 
             //Добиваем остатки элементов
             while (leftInd < maxLeftInd)
-            {
-                result[resultInd] = left[leftInd];
-                resultInd++;
-                leftInd++;
-            }
+                result[resultInd++] = left[leftInd++];
             while (rightInd < maxRightInd)
-            {
-                result[resultInd] = right[rightInd];
-                resultInd++;
-                rightInd++;
-            }
+                result[resultInd++] = right[rightInd++];
 
             return result;
         }
@@ -52,10 +36,8 @@ namespace MergeSort
         public T[] MergeSort<T>(T[] array, Int64 l, Int64 r) where T : IComparable<T>
         {
             if (l == r)
-            {
-                //Границы сомкнулись - остался один элемент
                 return new T[] { array[l] };
-            }
+
             Int64 mid = (l + r) / 2;
             var left = MergeSort(array, l, mid);
             var right = MergeSort(array, mid + 1, r);
