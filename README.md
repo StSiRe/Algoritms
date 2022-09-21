@@ -5,7 +5,8 @@
 :white_check_mark: Факториал    
 :white_check_mark: Сортировка пузырьком    
 :white_check_mark: Сортировка расческой  
-:white_check_mark: Сортировка слиянием(рекурсивный алгоритм)
+:white_check_mark: Сортировка слиянием(рекурсивный алгоритм)   
+:white_check_mark: Перемножение двух матриц - O(n^3)
 
 В планах:    
 ⬜ Quick Sort  
