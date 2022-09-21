@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /Users/andrew/Projects/Algoritms/Algorithms and Data Structures/Second task/second Select CMakeLists.txt
