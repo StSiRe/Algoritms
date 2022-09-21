@@ -1,3 +1,0 @@
-/Users/andrew/Projects/Algorithms and Data Structures/Second task/second/cmake-build-debug/CMakeFiles/second.dir
-/Users/andrew/Projects/Algorithms and Data Structures/Second task/second/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/andrew/Projects/Algorithms and Data Structures/Second task/second/cmake-build-debug/CMakeFiles/rebuild_cache.dir
