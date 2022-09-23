@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cmath>
+#include <ctime>
 float func(float x) {
     return pow(x,3)-x+exp(-x);
 }
 void PassiveSearch(float left,float right, float e)
 {
+    srand(time(0));
     int steps = 0;
     float minPoint = 0;
     float minVal = 99999999;
@@ -16,14 +18,16 @@ void PassiveSearch(float left,float right, float e)
             minPoint = i;
         }
     }
-    std::cout << "X:" << minPoint << " Y:" << func(minPoint) << std::endl;
+
+    std::cout << "Result X:" << minPoint << " Y:" << func(minPoint) <<" Steps:"<< steps<<" Time:" << clock()/1000.0<< std::endl;
 }
 void Task1_SearchHalfPart(float a,float b,float e){
     float x1;
     float a1=0,b1 = 999999;
     float a0 = a;
     float b0 = b;
-
+    srand(time(0));
+    int steps = 0;
     while(b1-a1 > e) {
         float om = (b0 - a0) / 10;
         float alp0 = (a0 + b0) / 2 - om;
@@ -44,15 +48,19 @@ void Task1_SearchHalfPart(float a,float b,float e){
 
         a0 = a1;
         b0 = b1;
+        steps++;
+        std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
     }
     float res = (a1 + b1) / 2;
-    std::cout << "X:" << res << " Y:" << func(res) << std::endl;
+    std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
 }
 void Task1_SearchGoldCut(float a,float b,float e){
     float x1;
     float a1=0,b1 = 999999;
     float a0 = a;
     float b0 = b;
+    srand(time(0));
+    int steps = 0;
 
     while(b1-a1 > e) {
         float om = b0 - a0;
@@ -74,9 +82,11 @@ void Task1_SearchGoldCut(float a,float b,float e){
 
         a0 = a1;
         b0 = b1;
+        steps++;
+        std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
     }
     float res = (a1 + b1) / 2;
-    std::cout << "X:" << res << " Y:" << func(res) << std::endl;
+    std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
 }
 float Fib(int n)
 {
@@ -92,7 +102,8 @@ void Task1_SearchFib(float a, float b, float e)
     float b0 = b;
     float d0 = b0-a0;
     int N = 1;
-
+    srand(time(0));
+    int steps = 0;
     while(d0/Fib(N) >= e)
     {
         N++;
@@ -122,9 +133,11 @@ void Task1_SearchFib(float a, float b, float e)
         a0 = a1;
         b0 = b1;
         k++;
+        steps++;
+        std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
     }
     float res = (a1 + b1) / 2;
-    std::cout << "X:" << res << " Y:" << func(res) << std::endl;
+    std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
 }
 int main() {
     float left,right,e;
@@ -143,26 +156,26 @@ int main() {
     std::cout << std::endl<<"Part 1: Searching extremum in range[-5,-3]" << std::endl;
     left = -5;
     right = -3;
-    std::cout << "Method 1: Classic search: "; PassiveSearch(left,right,e);
-    std::cout << "Method 2: Like-binary search: ";Task1_SearchHalfPart(left,right,e);
-    std::cout << "Method 3: Gold-cut search: ";Task1_SearchGoldCut(left,right,e);
-    std::cout << "Method 4: Fib search: ";Task1_SearchFib(left,right,e);
+    std::cout <<std::endl<< "Method 1: Classic search: "<< std::endl; PassiveSearch(left,right,e);
+    std::cout <<std::endl<< "Method 2: Like-binary search: "<< std::endl;Task1_SearchHalfPart(left,right,e);
+    std::cout <<std::endl<< "Method 3: Gold-cut search: "<< std::endl;Task1_SearchGoldCut(left,right,e);
+    std::cout <<std::endl<< "Method 4: Fib search: "<< std::endl;Task1_SearchFib(left,right,e);
 
     std::cout << std::endl<<"Part 2: Search Max-points in range [-3,0]"; std::cout << std::endl;
     left = -3;
     right = 0;
-    std::cout << "Method 1: Classic search: "; PassiveSearch(left,right,e);
-    std::cout << "Method 2: Like-binary search: ";Task1_SearchHalfPart(left,right,e);
-    std::cout << "Method 3: Gold-cut search: ";Task1_SearchGoldCut(left,right,e);
-    std::cout << "Method 4: Fib search: ";Task1_SearchFib(left,right,e);
+    std::cout <<std::endl<< "Method 1: Classic search: "<< std::endl; PassiveSearch(left,right,e);
+    std::cout <<std::endl<< "Method 2: Like-binary search: "<< std::endl;Task1_SearchHalfPart(left,right,e);
+    std::cout <<std::endl<< "Method 3: Gold-cut search: "<< std::endl;Task1_SearchGoldCut(left,right,e);
+    std::cout <<std::endl<< "Method 4: Fib search: "<< std::endl;Task1_SearchFib(left,right,e);
 
     std::cout <<std::endl << "Part 3: Search Min-points in range [0,3]"; std::cout << std::endl;
     left = 0;
     right = 3;
-    std::cout << "Method 1: Classic search: "; PassiveSearch(left,right,e);
-    std::cout << "Method 2: Like-binary search: ";Task1_SearchHalfPart(left,right,e);
-    std::cout << "Method 3: Gold-cut search: ";Task1_SearchGoldCut(left,right,e);
-    std::cout << "Method 4: Fib search: ";Task1_SearchFib(left,right,e);
+    std::cout <<std::endl<< "Method 1: Classic search: "<< std::endl; PassiveSearch(left,right,e);
+    std::cout <<std::endl<< "Method 2: Like-binary search: "<< std::endl;Task1_SearchHalfPart(left,right,e);
+    std::cout <<std::endl<< "Method 3: Gold-cut search: "<< std::endl;Task1_SearchGoldCut(left,right,e);
+    std::cout <<std::endl<< "Method 4: Fib search: "<< std::endl;Task1_SearchFib(left,right,e);
 
     std::cout <<std::endl<< "End. Thanks for using our software" << std::endl;
     return 0;
