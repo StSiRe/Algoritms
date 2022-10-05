@@ -33,10 +33,10 @@ std::vector<std::vector<int>> Multipy(std::vector<std::vector<int>> first,std::v
     std::vector<std::vector<int>> result;
     for (int i = 0; i < first.size(); ++i) {
         result.push_back(std::vector<int>());
-        for (int j = 0; j < first.size(); ++j) {
+        for (int j = 0; j < second[0].size(); ++j) {
             //новый элемент есть сумма умножения столбца А на строку Б
             int tmp =0;
-            for (int k = 0; k < second.size(); ++k) {
+            for (int k = 0; k < first[0].size(); ++k) {
                 tmp += first[i][k]*second[k][j];
             }
             result[i].push_back(tmp);
