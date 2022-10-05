@@ -1,7 +1,10 @@
 #include <iostream>
 #include <cmath>
 #include <ctime>
+bool isMaxRequired = false;
 float func(float x) {
+    if(isMaxRequired)
+        return -(pow(x,3)-x+exp(-x));
     return pow(x,3)-x+exp(-x);
 }
 void PassiveSearch(float left,float right, float e)
@@ -18,8 +21,10 @@ void PassiveSearch(float left,float right, float e)
             minPoint = i;
         }
     }
-
-    std::cout << "Result X:" << minPoint << " Y:" << func(minPoint) <<" Steps:"<< steps<<" Time:" << clock()/1000.0<< std::endl;
+    if(isMaxRequired)
+        std::cout << "Result X:" << minPoint << " Y:" << -func(minPoint) <<" Steps:"<< steps<<" Time:" << clock()/1000.0<< std::endl;
+    else
+        std::cout << "Result X:" << minPoint << " Y:" << func(minPoint) <<" Steps:"<< steps<<" Time:" << clock()/1000.0<< std::endl;
 }
 void Task1_SearchHalfPart(float a,float b,float e){
     float x1;
@@ -49,10 +54,16 @@ void Task1_SearchHalfPart(float a,float b,float e){
         a0 = a1;
         b0 = b1;
         steps++;
-        std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
+        if(isMaxRequired)
+            std::cout << "x:" << (a1+b1)/2 << " y:" << -func((a1+b1)/2) << std::endl;
+        else
+            std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
     }
     float res = (a1 + b1) / 2;
-    std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
+    if(isMaxRequired)
+        std::cout << "Result X:" << res << " Y:" << -func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
+    else
+        std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
 }
 void Task1_SearchGoldCut(float a,float b,float e){
     float x1;
@@ -83,10 +94,16 @@ void Task1_SearchGoldCut(float a,float b,float e){
         a0 = a1;
         b0 = b1;
         steps++;
-        std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
+        if(isMaxRequired)
+            std::cout << "x:" << (a1+b1)/2 << " y:" << -func((a1+b1)/2) << std::endl;
+        else
+            std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
     }
     float res = (a1 + b1) / 2;
-    std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
+    if(isMaxRequired)
+        std::cout << "Result X:" << res << " Y:" << -func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
+    else
+        std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
 }
 float Fib(int n)
 {
@@ -134,10 +151,16 @@ void Task1_SearchFib(float a, float b, float e)
         b0 = b1;
         k++;
         steps++;
-        std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
+        if(isMaxRequired)
+            std::cout << "x:" << (a1+b1)/2 << " y:" << -func((a1+b1)/2) << std::endl;
+        else
+            std::cout << "x:" << (a1+b1)/2 << " y:" << func((a1+b1)/2) << std::endl;
     }
     float res = (a1 + b1) / 2;
-    std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
+    if(isMaxRequired)
+        std::cout << "Result X:" << res << " Y:" << -func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
+    else
+        std::cout << "Result X:" << res << " Y:" << func(res) <<" Steps:"<< steps<<" Time:" << clock()/1000.0 << std::endl;
 }
 int main() {
     float left,right,e;
@@ -164,10 +187,12 @@ int main() {
     std::cout << std::endl<<"Part 2: Search Max-points in range [-3,0]"; std::cout << std::endl;
     left = -3;
     right = 0;
+    isMaxRequired = true;
     std::cout <<std::endl<< "Method 1: Classic search: "<< std::endl; PassiveSearch(left,right,e);
     std::cout <<std::endl<< "Method 2: Like-binary search: "<< std::endl;Task1_SearchHalfPart(left,right,e);
     std::cout <<std::endl<< "Method 3: Gold-cut search: "<< std::endl;Task1_SearchGoldCut(left,right,e);
     std::cout <<std::endl<< "Method 4: Fib search: "<< std::endl;Task1_SearchFib(left,right,e);
+    isMaxRequired = false;
 
     std::cout <<std::endl << "Part 3: Search Min-points in range [0,3]"; std::cout << std::endl;
     left = 0;
