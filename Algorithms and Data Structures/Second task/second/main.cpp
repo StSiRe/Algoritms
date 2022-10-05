@@ -151,7 +151,7 @@ int main() {
 //    std::cout<<std::endl;
 //
 //    PassiveSearch(left,right,e);
-    e= 0.001;
+    e= 0.000001;
     std::cout<< "Task 2 Functions(accuracy = 0.001)" << std::endl;
     std::cout << std::endl<<"Part 1: Searching extremum in range[-5,-3]" << std::endl;
     left = -5;
